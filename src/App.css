@@ -1,0 +1,54 @@
+
+.custom-input .MuiInputBase-input{
+  padding: 13px 10px;
+  padding-left: 50px;
+  position: relative;
+  
+}
+.input-icon{
+  position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #c8c8c8;
+    z-index: 9;
+}
+.custom-input.MuiInput-underline:before,
+.custom-input.MuiInput-underline:after{
+border: 0 !important;
+}
+
+.btn-filter span {
+  justify-content: space-between;
+}
+.info-box{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 25px;
+}
+.info-box ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.info-box ul.info-list li{
+  width: 100%;
+  display: flex;
+  padding: 6px 0;
+  margin-right: 15px;
+}
+.info-box ul.info-list li span{
+  font-weight: 600;
+  margin-right: 5px;
+}
+
+.borderList {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.borderList li{
+  margin: 5px;
+}
