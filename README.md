@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Get all country list
 
-[Demo](https://country-frontned.netlify.app/).
+[Demo](https://country-frontned.netlify.app/)
 
 ## Use following commands
 
