@@ -32,7 +32,7 @@ export const getCountryDetailsForMultipleCodesAPI = async (code: string): Promis
     try {
         const response = await axios.get(`https://restcountries.com/v2/alpha/?codes=${code}`);
         const data = response.data;
-        return data.length ? data.map((item: any) => item?.name) : data;
+        return data.length ? data.map((item: any) => { return { name: item?.name, code: item?.alpha2Code, image: item?.flag } }) : data;
     } catch (error) {
         return null;
     }

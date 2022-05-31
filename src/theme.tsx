@@ -1,4 +1,4 @@
-import { createTheme, createMuiTheme } from "@material-ui/core/styles"
+import { createTheme } from "@mui/material/styles"
 
 
 export const appTheme = (isDarkMode: Boolean) => {
@@ -11,21 +11,27 @@ export const appTheme = (isDarkMode: Boolean) => {
             fontWeightBold: 800,
             fontSize: 14
         },
-        overrides: {
+        components: {
             MuiButton: {
-                text: {
-                    textTransform: "capitalize",
+                styleOverrides: {
+                    text: {
+                        textTransform: "capitalize",
+                        color: !isDarkMode ? "hsl(207, 26%, 17%)" : "hsl(0, 0%, 98%)"
+                    }
                 }
             },
             MuiPaper: {
-                elevation1: {
-                    boxShadow: "0px 1px 8px rgb(0 0 0 / 10%)",
-                    background: isDarkMode ? "hsl(207, 26%, 17%)" : "hsl(0, 0%, 98%)",
+                styleOverrides: {
+                    elevation1: {
+                        boxShadow: "0px 1px 8px rgb(0 0 0 / 10%)",
+                        background: isDarkMode ? "hsl(207, 26%, 17%)" : "hsl(0, 0%, 98%)",
+                        color: !isDarkMode ? "hsl(207, 26%, 17%)" : "hsl(0, 0%, 98%)"
+                    }
                 }
             }
         },
         palette: {
-            type: isDarkMode ? "dark" : "light",
+            mode: isDarkMode ? "dark" : "light",
             primary: {
                 main: isDarkMode ? "hsl(209, 23%, 22%)" : "hsl(0, 0%, 100%)",
             },

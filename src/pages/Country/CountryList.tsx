@@ -1,5 +1,4 @@
-import { Grid } from '@material-ui/core'
-import React from 'react'
+import { Grid } from '@mui/material'
 import { useAppState } from '../../context'
 import CountryListItem from './CountryListItem'
 

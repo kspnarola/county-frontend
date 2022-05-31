@@ -18,7 +18,7 @@ const initialArgs = {
     loading: false
 }
 
-const useCountry = (appState: any) => {
+const useCountry = () => {
     const [state, setState] = useReducer(reducer, initialArgs);
 
     const getAllCountries = async () => {

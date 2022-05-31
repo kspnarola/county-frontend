@@ -1,9 +1,12 @@
-import React from 'react'
-import CircularProgress from '@material-ui/core/CircularProgress';
+import CircularProgress from '@mui/material/CircularProgress';
 
-const Loading = ({ loading = false }: any) => {
+interface LoadingProps {
+    loading: boolean
+}
+
+const Loading = (props: LoadingProps) => {
     return (
-        loading ? <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginTop: "50px" }} >
+        props.loading ? <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginTop: "50px" }} >
             <h4 style={{ marginRight: "10px" }}>Loading...</h4><CircularProgress color='inherit' size={"24px"} />
         </div > : null
     )

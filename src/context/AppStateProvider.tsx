@@ -1,10 +1,15 @@
-import React, { useEffect, useState, useRef, ReactChild, ReactChildren } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import AppContext from "./AppContext";
 
+interface IAppStateProviderProps {
+    children: React.ReactNode;
+    containers?: any;
+}
+
 let oldMapOfInstancesStringified: any;
 
-const AppStateProvider = ({ children, containers = {} }: any) => {
+const AppStateProvider = (props: IAppStateProviderProps) => {
     const [isInitialised, setInitialised] = useState<Boolean>(false);
     const mapOfInstances = useRef<any>({});
     const [updateCount, setUpdateCount] = useState(0);
@@ -13,8 +18,8 @@ const AppStateProvider = ({ children, containers = {} }: any) => {
         return mapOfInstances.current[id] || {};
     };
 
-    Object.keys(containers).forEach(k => {
-        mapOfInstances.current[k] = containers[k](getter);
+    Object.keys(props.containers).forEach(k => {
+        mapOfInstances.current[k] = props.containers[k](getter);
     });
 
     useEffect(() => {
@@ -31,7 +36,7 @@ const AppStateProvider = ({ children, containers = {} }: any) => {
 
     return (
         <AppContext.Provider value={[mapOfInstances.current]}>
-            {isInitialised && children}
+            {isInitialised && props.children}
         </AppContext.Provider>
     );
 };

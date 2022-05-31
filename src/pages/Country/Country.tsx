@@ -1,13 +1,12 @@
-import React, { useEffect } from 'react'
-import PropTypes from 'prop-types'
-import { Container, Grid, Input, InputAdornment, TextField } from '@material-ui/core'
+import { useEffect } from 'react'
+import { Container, Grid } from '@mui/material'
 import CustomAutocomplete from '../../components/CustomAutocomplete/CustomAutocomplete'
 import FilterByRegion from '../../components/FilterByRegion/FilterByRegion'
 import CountryList from './CountryList'
 import { useAppState } from '../../context'
 import Loading from '../../components/Loading/Loading'
 
-const Country = (props: any) => {
+const Country = () => {
     const { getAllCountries, loading } = useAppState('country');
 
     useEffect(() => {

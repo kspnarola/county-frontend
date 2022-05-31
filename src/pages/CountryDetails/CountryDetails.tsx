@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
-import { Button, Container, Paper, Grid } from '@material-ui/core'
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { Button, Container, Paper, Grid } from '@mui/material'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons/faArrowLeft';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -8,25 +7,8 @@ import { useAppState } from '../../context';
 import { get, map } from 'lodash'
 import Loading from '../../components/Loading/Loading';
 
-const useStyles = makeStyles((theme) => createStyles({
-    btnWrapper: {
-        backgroundColor: theme.palette.primary.main,
-        width: 'fit-content',
-        minWidth: "100px",
-    },
-    btnBack: {
-        width: "100%",
-        backgroundColor: theme.palette.primary.main,
-    },
-    borderItem: {
-        padding: "5px 15px",
-        backgroundColor: theme.palette.primary.main,
-    }
-}))
-
-const CountryDetails = (props: any) => {
+const CountryDetails = () => {
     const { getCountryDetailsByCode, country, setData, loading } = useAppState('country')
-    const classes = useStyles();
     const params = useParams();
     const navigate = useNavigate();
 
@@ -42,10 +24,14 @@ const CountryDetails = (props: any) => {
     const currencies = map(country?.currencies, function (n) { return n.name });
     const languages = map(country?.languages, function (n) { return n });
 
+    const handleClickBorder = (code: string) => {
+        navigate(`/country/${code}`)
+    }
+
     return (
         <Container style={{ marginTop: "40px" }}>
-            <Paper className={classes.btnWrapper}>
-                <Button onClick={() => navigate('/')} className={classes.btnBack} startIcon={<FontAwesomeIcon icon={faArrowLeft} size="1x" />}>Back</Button>
+            <Paper sx={{ bgcolor: 'primary.main', width: "fit-content", minWidth: "100px" }}>
+                <Button onClick={() => navigate('/')} sx={{ width: "100px", bgcolor: "primary.main" }} startIcon={<FontAwesomeIcon icon={faArrowLeft} size="1x" />}>Back</Button>
             </Paper>
 
             {loading ? <Loading loading={loading} /> :
@@ -97,10 +83,10 @@ const CountryDetails = (props: any) => {
                                 <div style={{ display: "flex", flexWrap: "wrap" }}>
                                     <h4>Border Countries:</h4>
                                     <ul className="borderList">
-                                        {get(country, "borderList", []).map((item: any) =>
-                                            <li>
-                                                <Paper className={classes.borderItem}>
-                                                    {item}
+                                        {get(country, "borderList", []).map((item: any, index: number) =>
+                                            <li key={index} style={{ cursor: "pointer" }} onClick={() => handleClickBorder(item.code)}>
+                                                <Paper sx={{ padding: "5px 15px", bgcolor: "primary.main", display: "flex", alignItems: "center" }}>
+                                                    <img src={item?.image} style={{ marginRight: "5px" }} height="20px" width="20px" />{item.name}
                                                 </Paper>
                                             </li>
                                         )}

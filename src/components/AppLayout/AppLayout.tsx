@@ -1,11 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Header from './Header'
-import { createTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import { useAppState } from '../../context';
 import { appTheme } from '../../theme';
-import { Paper } from '@material-ui/core';
+import { Paper } from '@mui/material';
 
-const AppLayout = ({ children }: any) => {
+interface AppLayoutProps {
+  children: React.ReactNode
+}
+
+
+const AppLayout = (props: AppLayoutProps) => {
   const { isDarkMode } = useAppState("app");
   const theme = appTheme(isDarkMode)
 
@@ -14,7 +19,7 @@ const AppLayout = ({ children }: any) => {
       <Paper style={{ height: "100%", minHeight: "100vh", border: 0, boxShadow: "none" }}>
         <div className='app'>
           <Header />
-          {children}
+          {props.children}
         </div>
       </Paper>
     </ThemeProvider>

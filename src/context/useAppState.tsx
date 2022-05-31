@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import AppContext from "./AppContext";
 
-const useAppState = (container: any) => {
+const useAppState = (container: string) => {
     const [containers] = useContext(AppContext);
 
     // Check if we even have an appContext
